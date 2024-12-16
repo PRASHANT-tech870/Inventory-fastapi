@@ -22,65 +22,114 @@ body {
   width: 100%;
   max-width: 1200px;
   padding: 20px;
+  position: relative;
 }
 
 /* Header */
 .header h1 {
   font-size: 3rem;
-  margin-bottom: 40px;
   color: #f1f1f1;
+  margin-bottom: 10px;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  color: #ccc;
 }
 
 /* Cards */
 .cards {
   display: flex;
-  justify-content: space-evenly;
-  gap: 30px;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
 }
 
 .card {
-  background-color: #1f1f1f;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  padding: 30px;
   width: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 400px;
+  position: relative;
   cursor: pointer;
-  overflow: hidden;
+  perspective: 1000px;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  border-radius: 15px;
 }
 
-.card-content h2 {
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Card front */
+.card-front {
+  background-color: #1a73e8;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-front h2 {
   font-size: 2rem;
   margin-bottom: 10px;
 }
 
-.card-content p {
-  font-size: 1rem;
-  color: #bbb;
+.card-front p {
+  font-size: 1.1rem;
+  opacity: 0.8;
 }
 
-.card-content {
-  padding: 10px;
+/* Card back */
+.card-back {
+  background-color: #ff3f6c;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
 }
 
-/* Mobile Responsiveness */
+.card-back h2 {
+  font-size: 2rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .cards {
     flex-direction: column;
     align-items: center;
+    gap: 20px;
   }
 
   .card {
-    margin-bottom: 20px;
-    width: 80%;
+    width: 90%;
+    height: 350px;
   }
 
   .header h1 {
     font-size: 2.5rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
   }
 }
